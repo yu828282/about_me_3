@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume_3</title>
+    <title>Resume</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
             margin: 0;
+            padding: 0;
             background-color: #000;
             color: #fff;
         }
         .resume {
-            width: 900px;
+            max-width: 900px;
             margin: 20px auto;
         }
 
         .section {
             margin: 20px;
             padding: 20px;
+            background-color: #000;
         }
 
         .section h2 {
@@ -32,6 +35,8 @@
         .profile {
             display: flex;
             padding: 10px;
+            flex-direction: row;
+            align-items: center;
         }
 
         .profile img {
@@ -42,13 +47,14 @@
         }
 
         .profile h1 {
-            font-size: 25px;
+            font-size: 2em;
             margin: 10px;
             color: #5fed40;
         }
 
         .profile p {
-            color: gray;
+            font-size: 1em;
+            color: #666;
             margin: 10px;
         }
 
@@ -69,13 +75,18 @@
             color: #000;
             border: none;
             border-radius: 4px;
+            cursor: pointer;
         }
         button:hover {
             background-color: #50ba38;
         }
         a{
-            color: gray;
+            color: #5fed40;
             text-decoration: none;
+        }
+        a:hover {
+            text-decoration:underline;
+            color: #5fed40;
         }
         footer {
             text-align: center;
@@ -85,21 +96,22 @@
 </head>
 <body>
     <div class="resume">
-        <div>
+        <header>
             <div class="profile">
                 <img src="profile.png" alt="Profile Photo">
                 <div>
                     <h1>John Doe</h1>
                     <p>Web Developer</p>
+                    <div id="change-bg-button">🌔</div><!-- JavaScript (change background color) -->
                 </div>
             </div>
-            <!-- About Me Section -->
             <div class="section">
                 <h2>About Me</h2>
-                <p>Hello! I'm <strong>John Doe</strong>,</p>
-                <p>a passionate web developer with a love for creating elegant and efficient solutions. I have experience in building responsive and user-friendly websites.</p>
+                <p>Hello! I'm John Doe,</p>
+                <p id="animatedText"></p><!-- JavaScript (typing effect) -->     
+                <!-- <p>a passionate web developer with a love for creating elegant and efficient solutions. I have experience in building responsive and user-friendly websites.</p> -->
             </div>
-        </div>
+        </header>
         <!-- Skills Section -->
         <div class="section skills">
             <h2>Skills</h2>
@@ -131,14 +143,43 @@
                     <li>Email : <a href="mailto:john.doe@example.com" target="_blank">john.doe@example.com</a></li>
                     <li>Phone : <a href="tel:0104567890" target="_blank">(+82) 010-456-7890</a></li>
                     <li>LinkedIn : <a href="https://linkedin.com/in/johndoe" target="_blank">linkedin.com/in/johndoe</a></li>
-                    <li>Phone : <a href="tel:0104567890" target="_blank">(+82) 010-456-7890</a></li>
                 </ul>
             </div>        
-            <button>Click to contact me</button>
+            <!-- JavaScript(email button) -->
+            <button type="button" onclick="location.href='mailto:john.doe@example.com'">Click to contact me</button>
         </div>
         <footer>
             <p>&copy; 2025 John Doe. All rights reserved.</p>
         </footer>
     </div>
+    <script>
+        // typing effect
+            const text = "a passionate web developer with a love for creating elegant and efficient solutions. I have experience in building responsive and user-friendly websites.";
+            const textElement = document.getElementById("animatedText");
+    
+            let index = 0;
+    
+            function typeText() {
+                if (index < text.length) {
+                textElement.textContent += text[index];
+                index++;
+                setTimeout(typeText, 50); // 50 ms
+                }
+            }
+            typeText();
+
+            //change background color
+            const button = document.getElementById('change-bg-button');
+            let isOriginalColor = true;
+    
+            button.addEventListener('click', () => {
+                if (isOriginalColor){
+                    document.body.style.backgroundColor = '#2e2e2e';
+                }else{
+                    document.body.style.backgroundColor = '#000';
+                }
+                isOriginalColor = !isOriginalColor;
+            });
+    </script>
 </body>
 </html>
